@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw-13</title>
+</head>
+
+<body>
+    <script>
+        function palindrom(value, step = 1) {
+            let reverseValue = +String(value).split('').reverse().join('');
+            let result = `${value + reverseValue}`;
+            let half = result.length / 2;
+
+            if (result.length % 2 === 0) {
+                if (result.slice(0, half) === result.slice(half).split('').reverse().join('')) {
+                    return {
+                        result: +result,
+                        step,
+                    }
+                }
+            } else if (result.length > 1) {
+                const leftPart = Math.floor(half);
+                const rightPart = Math.ceil(half);
+                if (result.slice(0, leftPart) === result.slice(rightPart).split('').reverse().join('')) {
+                    return {
+                        result: +result,
+                        step,
+                    }
+                }
+            }
+            return palindrom(value + reverseValue, step + 1)
+        }
+    </script>
+</body>
+
+</html>
